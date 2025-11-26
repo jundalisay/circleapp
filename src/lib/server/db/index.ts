@@ -16,37 +16,39 @@
 // export const db = drizzle(client, { schema });
 
 
-// src/lib/server/db.ts
 import { drizzle } from 'drizzle-orm/libsql';
 import { createClient } from '@libsql/client';
 import * as schema from './schema';
 
-// Detect if we're inside SvelteKit runtime (Vite app)
-let skEnv: Record<string, string | undefined> = {};
-let dev = false;
+// Lazy initialization to use runtime environment variables
+let dbInstance: ReturnType<typeof drizzle> | null = null;
 
-try {
-	// These imports ONLY work inside SvelteKit - this try block will fail in Bun/Node
-	const kitEnv = await import('$env/dynamic/private');
-	const kitApp = await import('$app/environment');
-	skEnv = kitEnv.env;
-	dev = kitApp.dev;
-} catch {
-	// Fallback for Bun/Node/CLI
-	skEnv = process.env;
-	dev = process.env.NODE_ENV !== 'production';
+function getDb() {
+  if (!dbInstance) {
+    // Check multiple environment variable sources for Cloudflare compatibility
+    const dbUrl = process.env.DATABASE_URL || 
+                  // @ts-ignore - Cloudflare Pages environment
+                  globalThis.DATABASE_URL || 
+                  'file:local.db';
+    
+    const authToken = process.env.DATABASE_AUTH_TOKEN || 
+                      // @ts-ignore - Cloudflare Pages environment
+                      globalThis.DATABASE_AUTH_TOKEN;
+
+    console.log('Initializing database connection:', { 
+      url: dbUrl.substring(0, 20) + '...', 
+      hasToken: !!authToken 
+    });
+
+    const client = createClient({
+      url: dbUrl,
+      authToken: authToken
+    });
+
+    dbInstance = drizzle(client, { schema });
+  }
+  
+  return dbInstance;
 }
 
-// Prefer SvelteKit env first, fallback to process.env
-const DATABASE_URL = skEnv.DATABASE_URL ?? process.env.DATABASE_URL;
-const DATABASE_AUTH_TOKEN = skEnv.DATABASE_AUTH_TOKEN ?? process.env.DATABASE_AUTH_TOKEN;
-
-if (!DATABASE_URL) throw new Error('DATABASE_URL is not set');
-if (!dev && !DATABASE_AUTH_TOKEN) throw new Error('DATABASE_AUTH_TOKEN is not set');
-
-const client = createClient({
-	url: DATABASE_URL,
-	authToken: DATABASE_AUTH_TOKEN
-});
-
-export const db = drizzle(client, { schema });
+export const db = getDb();
