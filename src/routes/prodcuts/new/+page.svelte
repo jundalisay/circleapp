@@ -27,17 +27,17 @@
     <div class="space-y-4">
       <div>
         <label class="block text-sm font-medium mb-1">Name *</label>
-        <input bind:value={name} required class="w-full border rounded px-3 py-2" />
+        <input id="name" bind:value={name} required class="w-full border rounded px-3 py-2" />
       </div>
       
       <div class="grid grid-cols-2 gap-4">
         <div>
           <label class="block text-sm font-medium mb-1">Measure *</label>
-          <input bind:value={measure} required class="w-full border rounded px-3 py-2" placeholder="pcs, kg, etc" />
+          <input id="measure" bind:value={measure} required class="w-full border rounded px-3 py-2" placeholder="pcs, kg, etc" />
         </div>
         <div>
           <label class="block text-sm font-medium mb-1">Points *</label>
-          <input bind:value={points} type="number" step="0.01" required class="w-full border rounded px-3 py-2" />
+          <input id="points" bind:value={points} type="number" step="0.01" required class="w-full border rounded px-3 py-2" />
         </div>
       </div>
       
@@ -52,17 +52,17 @@
       
       <div>
         <label class="block text-sm font-medium mb-1">Photo URL</label>
-        <input bind:value={photo1} type="url" class="w-full border rounded px-3 py-2" />
+        <input id="photo" bind:value={photo1} type="url" class="w-full border rounded px-3 py-2" />
       </div>
       
       <div>
         <label class="block text-sm font-medium mb-1">Headline</label>
-        <input bind:value={headline} class="w-full border rounded px-3 py-2" />
+        <input id="headline" bind:value={headline} class="w-full border rounded px-3 py-2" />
       </div>
       
       <div>
         <label class="block text-sm font-medium mb-1">Description</label>
-        <textarea bind:value={description} class="w-full border rounded px-3 py-2" rows="4"></textarea>
+        <textarea id="description" bind:value={description} class="w-full border rounded px-3 py-2" rows="4"></textarea>
       </div>
       
       <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded font-semibold hover:bg-blue-700">

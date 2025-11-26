@@ -45,17 +45,17 @@
     <div class="space-y-4">
       <div>
         <label class="block text-sm font-medium mb-1">Your Codename</label>
-        <input bind:value={buyerCodename} required class="w-full border rounded px-3 py-2" />
+        <input id="codename" bind:value={buyerCodename} required class="w-full border rounded px-3 py-2" />
       </div>
       
       <div>
         <label class="block text-sm font-medium mb-1">Your PIN</label>
-        <input bind:value={buyerPin} type="password" required class="w-full border rounded px-3 py-2" />
+        <input id="pin" bind:value={buyerPin} type="password" required class="w-full border rounded px-3 py-2" />
       </div>
       
       <div>
         <label class="block text-sm font-medium mb-1">Amount</label>
-        <input bind:value={amount} type="number" step="0.01" min="0.01" required class="w-full border rounded px-3 py-2" />
+        <input id="amount" bind:value={amount} type="number" step="0.01" min="0.01" required class="w-full border rounded px-3 py-2" />
       </div>
       
       <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded font-semibold hover:bg-blue-700">
@@ -64,5 +64,3 @@
     </div>
   </form>
 </div>
-
-

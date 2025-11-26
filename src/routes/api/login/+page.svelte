@@ -31,12 +31,12 @@
     <div class="space-y-4">
       <div>
         <label class="block text-sm font-medium mb-1">Codename</label>
-        <input bind:value={codename} required class="w-full border rounded px-3 py-2" />
+        <input id="codename-input" bind:value={codename} required class="w-full border rounded px-3 py-2" />
       </div>
-      
+
       <div>
         <label class="block text-sm font-medium mb-1">Password</label>
-        <input bind:value={password} type="password" required class="w-full border rounded px-3 py-2" />
+        <input id="password" bind:value={password} type="password" required class="w-full border rounded px-3 py-2" />
       </div>
       
       <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded font-semibold hover:bg-blue-700">
