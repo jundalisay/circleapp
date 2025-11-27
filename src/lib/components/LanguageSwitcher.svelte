@@ -14,20 +14,8 @@
   }
 </script>
 
-<div class="flex gap-2">
-<!--   <button
-    onclick={() => switchLanguage('en')}
-    class={`px-4 py-2 rounded ${currentLang === 'en' ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
-  >
-    English
-  </button>
-  <button
-    onclick={() => switchLanguage('tl')}
-    class={`px-4 py-2 rounded ${currentLang === 'tl' ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
-  >
-    Tagalog
-  </button> -->
 
+<div class="flex gap-2">
   <button onclick={() => switchLanguage('en')} class={`px-4 py-2 rounded ${currentLang === 'en' ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}>
     English
   </button>
@@ -35,7 +23,6 @@
   >
     Tagalog
   </button>
-
 
 <!--   <button onclick={() => }>en</button>
   <button onclick={() => setLocale('es')}>es</button>

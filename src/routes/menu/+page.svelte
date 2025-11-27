@@ -17,6 +17,7 @@
   ];
 </script>
 
+
 <div class="max-w-2xl mx-auto px-4 py-8">
   <h2 class="text-3xl font-extrabold mb-8 text-center text-gray-900 tracking-tight">
     {m.menu()}
